@@ -28,4 +28,11 @@ phases:
     commands:
       - echo "Building Docker image..."
       - docker build -t flask-websocket-app .
-      - docker tag flask
+      - echo "Tagging Docker image..."
+      - docker tag flask-websocket-app $DOCKERHUB_USERNAME/flask-websocket-app:latest
+      - echo "Pushing Docker image to Docker Hub..."
+      - docker push $DOCKERHUB_USERNAME/flask-websocket-app:latest
+
+artifacts:
+  files:
+    - "**/*"
